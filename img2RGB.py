@@ -1,6 +1,5 @@
 from PIL import Image
 import easygui
-import numpy as np
 
 def img2RGB(x, y):
 	## Load image
