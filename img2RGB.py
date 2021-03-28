@@ -15,12 +15,12 @@ def img2RGB(x, y):
 	
 	
 if __name__ == "__main__":
-	matrix = img2RGB(16,9)
+	matrix = img2RGB(800,600)
 	
 	index = 0
-	for x in range(16):
+	for x in range(800):
 		row = []
-		for y in range(9):
+		for y in range(600):
 			row.append(matrix[index])
 			index += 1
 		print(row)
