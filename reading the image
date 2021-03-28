@@ -1,0 +1,45 @@
+//set boundaries of lower limits and upper limits of the blue
+boundaries = [(33, 47, 181), ([50, 141, 168]]
+
+//taking the image, don't know how to
+
+//mentor told us the CVS file can be read with pandas and titling the columns
+index=["color","color_name","hex","R","G","B"]
+csv = pd.read_csv('colors.csv', names=index, header=None)
+//window created to display the image and call a function when mouse clicks on it
+cv2.namedWindow('image')
+cv2.setMouseCallback('image',draw_function)
+
+//functino is defined and r, b, and g is assigned a value
+def draw_function(event, x,y,flags,param):
+    if event == cv2.EVENT_LBUTTONDBLCLK:
+        global b,g,r,xpos,ypos, clicked
+        clicked = True
+        xpos = x
+        ypos = y
+        b,g,r = img[y,x]
+        b = int(b)
+        g = int(g)
+        r = int(r)
+        
+ //making sure everytime the image is clicked the values are updated and displayed
+ while(1):
+    cv2.imshow("image",img)
+    if (clicked):
+        #cv2.rectangle(image, startpoint, endpoint, color, thickness) -1 thickness fills rectangle entirely
+        cv2.rectangle(img,(20,20), (750,60), (b,g,r), -1)
+  text= 'R=" + str(r) + ' G=' + str(g) + ' B= ' + str(b)
+
+        #cv2.putText(img,text,start,font(0-7), fontScale, color, thickness, lineType, (optional bottomLeft bool) )
+        cv2.putText(img, text,(50,50),2,0.8,(255,255,255),2,cv2.LINE_AA)
+  #For very light colours we will display text in black colour
+        if(r+g+b>=600):
+            cv2.putText(img, text,(50,50),2,0.8,(0,0,0),2,cv2.LINE_AA)
+
+        clicked=False
+
+    #Break the loop when user hits 'esc' key 
+    if cv2.waitKey(20) & 0xFF ==27:
+        break
+
+cv2.destroyAllWindows()
